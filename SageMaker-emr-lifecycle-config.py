@@ -11,7 +11,9 @@ def fetch_emr_ip():
 	for cluster in cluster_list:
 		if re.match(cluster_name, cluster['Name']):
 			cluster_id = cluster['Id']
-			master_node = boto_emr_client.list_instances(ClusterId=cluster_id,InstanceGroupTypes=['MASTER'],InstanceStates=['RUNNING'])['Instances'][0]
+			master_node = boto_emr_client.list_instances(ClusterId=cluster_id,
+								     InstanceGroupTypes=['MASTER'],
+								     InstanceStates=['RUNNING'])['Instances'][0]
 			ip = master_node['PublicDnsName']
 			return ip
 
